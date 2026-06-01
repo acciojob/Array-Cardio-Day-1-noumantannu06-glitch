@@ -62,7 +62,10 @@ export function sortByLastName() {
     return people.slice().sort((a, b) => {
         const [aLast] = a.split(', ');
         const [bLast] = b.split(', ');
-        return aLast.localeCompare(bLast);
+        if (aLast === bLast) {
+            return aFirst.localeCompare(bFirst);
+        }
+		return aLast.localeCompare(bLast);
     });
 }
 
