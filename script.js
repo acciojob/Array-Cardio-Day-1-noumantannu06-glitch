@@ -1,8 +1,3 @@
-// Get your shorts on - this is an array workout!
-// ## Array Cardio Day 1
-
-// Some data we can work with
-
 const inventors = [
     { first: 'Albert', last: 'Einstein', year: 1879, passed: 1955 },
     { first: 'Isaac', last: 'Newton', year: 1643, passed: 1727 },
@@ -26,57 +21,56 @@ const people = [
     'Billings, Josh', 'Birrell, Augustine', 'Blair, Tony', 'Beecher, Henry', 'Biondo, Frank'
 ];
 
-// Array.prototype.filter()
-// 1. Filter the list of inventors for those who were born in the 1500's
-export function myfilter() {
+const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck', 'pogostick'];
+
+function myfilter() {
     return inventors.filter(inventor => inventor.year >= 1500 && inventor.year < 1600);
 }
 
-// Array.prototype.map()
-// 2. Give us an array of the inventor first and last names (i.e. full name)
-export function map() {
+function map() {
     return inventors.map(inventor => `${inventor.first} ${inventor.last}`);
 }
 
-// Array.prototype.sort()
-// 3. Sort the inventors by birthdate, oldest to youngest and return the sorted array
-export function sort() {
+function sort() {
     return inventors.slice().sort((a, b) => a.year - b.year);
 }
 
-// Array.prototype.reduce()
-// 4. How many years did all the inventors live?
-// Return the total number of years all the inventors lived
-export function reduce() {
+function reduce() {
     return inventors.reduce((total, inventor) => total + (inventor.passed - inventor.year), 0);
 }
 
-// 5. Sort the inventors by years lived and return the sorted array
-export function sortbylived() {
+function sortbylived() {
     return inventors.slice().sort((a, b) => (b.passed - b.year) - (a.passed - a.year));
 }
 
-// 6. sort Exercise
-// Sort the people alphabetically by last name and return the sorted array
-function sortByLastname(arr) {
-  return arr.sort((a, b) => {
-    const lastA = a.split(",")[0].trim();
-    const lastB = b.split(",")[0].trim();
+function sortByLastName() {
+    return people.slice().sort((a, b) => {
+        const [aLast, aFirst] = a.split(', ');
+        const [bLast, bFirst] = b.split(', ');
 
-    if (lastA < lastB) return -1;
-    if (lastA > lastB) return 1;
+        if (aLast === bLast) {
+            return bFirst.localeCompare(aFirst);
+        }
 
-    return 0;
-  });
+        return aLast.localeCompare(bLast);
+    });
 }
 
-// 7. Reduce Exercise
-// Sum up the instances of each of these
-const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck', 'pogostick'];
-
-export function reducedSum() {
+function reducedSum() {
     return data.reduce((obj, item) => {
         obj[item] = (obj[item] || 0) + 1;
         return obj;
     }, {});
 }
+
+const solution = {
+    myfilter,
+    map,
+    sort,
+    reduce,
+    sortbylived,
+    sortByLastName,
+    reducedSum
+};
+
+export default solution;
