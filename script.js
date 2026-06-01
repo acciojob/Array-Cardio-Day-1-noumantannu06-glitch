@@ -60,12 +60,14 @@ export function sortbylived() {
 // Sort the people alphabetically by last name and return the sorted array
 export function sortByLastName() {
     return people.slice().sort((a, b) => {
-        const [aLast] = a.split(', ');
-        const [bLast] = b.split(', ');
+        const [aLast, aFirst] = a.split(', ');
+        const [bLast, bFirst] = b.split(', ');
+
         if (aLast === bLast) {
             return aFirst.localeCompare(bFirst);
         }
-		return aLast.localeCompare(bLast);
+
+        return aLast.localeCompare(bLast);
     });
 }
 
